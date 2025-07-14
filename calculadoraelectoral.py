@@ -38,9 +38,9 @@ def calcular_bancas(porcentajes_fuerzas, total_bancas):
     return bancas_por_cociente, porcentaje_restante
 
 # Streamlit App
-st.title("🗳️ Calculadora de bancas legislativas - Cuociente Electoral")
+st.title("🗳️ Calculadora de bancas legislativas - PBA")
 
-st.write("Ingresá los porcentajes de votos de las fuerzas y la cantidad de bancas en juego para cada categoría.")
+st.write("Ingresá los porcentajes de votos de las fuerzas que superarán el piso electoral y la cantidad de bancas en juego para cada categoría.")
 
 num_fuerzas = st.number_input("¿Cuántas fuerzas querés cargar?", min_value=2, max_value=10, value=3)
 
@@ -54,8 +54,8 @@ if suma_porcentajes > 100:
     st.error(f"La suma de los porcentajes ({suma_porcentajes:.2f}%) supera el 100%. Corregilo para continuar.")
 else:
     st.subheader("⚙️ Bancas en juego por categoría")
-    bancas_concejales = st.number_input("Cantidad de bancas a repartir (Concejales)", min_value=1, value=12)
-    bancas_diputados = st.number_input("Cantidad de bancas a repartir (Diputados)", min_value=1, value=6)
+    bancas_concejales = st.number_input("Cantidad de bancas a repartir (CONCEJALES)", min_value=1, value=12)
+    bancas_diputados = st.number_input("Cantidad de bancas a repartir (DIPUTADOS)", min_value=1, value=6)
 
     if st.button("Calcular bancas"):
         # Concejales
