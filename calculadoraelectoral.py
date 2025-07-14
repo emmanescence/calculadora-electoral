@@ -38,7 +38,7 @@ def calcular_bancas(porcentajes_fuerzas, total_bancas):
     return bancas_por_cociente, porcentaje_restante
 
 # Streamlit App
-st.title("🗳️ Calculadora de bancas legislativas - PBA")
+st.title("🗳️ Calculadora de bancas legislativas - PBA - https://x.com/iterAR_eco")
 
 st.write("Ingresá los porcentajes de votos de las fuerzas que superarán el piso electoral y la cantidad de bancas en juego para cada categoría.")
 
