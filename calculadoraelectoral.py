@@ -54,25 +54,20 @@ if suma_porcentajes > 100:
     st.error(f"La suma de los porcentajes ({suma_porcentajes:.2f}%) supera el 100%. Corregilo para continuar.")
 else:
     st.subheader("⚙️ Bancas en juego por categoría")
-    bancas_concejales = st.number_input("Cantidad de bancas a repartir (CONCEJALES)", min_value=1, value=12)
-    bancas_diputados = st.number_input("Cantidad de bancas a repartir (DIPUTADOS)", min_value=1, value=6)
+    bancas_concejales = st.number_input("Cantidad de bancas a repartir (Concejales)", min_value=1, value=12)
+    bancas_diputados = st.number_input("Cantidad de bancas a repartir (Diputados)", min_value=1, value=6)
 
-if st.button("Calcular bancas"):
-piso_concejales = 100 / bancas_concejales
-piso_diputados = 100 / bancas_diputados
+    if st.button("Calcular bancas"):
+        # Concejales
+        bancas_c, restante_c = calcular_bancas(porcentajes_fuerzas, bancas_concejales)
+        st.subheader(f"🔹 Concejales ({bancas_concejales} bancas en juego)")
+        for idx, (p, b) in enumerate(zip(porcentajes_fuerzas, bancas_c), 1):
+            st.write(f"Fuerza {idx}: {p:.2f}% votos - {b} bancas")
+        st.write(f"Porcentaje de otras fuerzas sin bancas: {restante_c:.2f}%")
 
-# Concejales
-bancas_c, restante_c = calcular_bancas(porcentajes_fuerzas, bancas_concejales)
-st.subheader(f"🔹 Concejales ({bancas_concejales} bancas en juego)")
-st.markdown(f"📌 **Piso electoral:** {piso_concejales:.2f}%")
-for idx, (p, b) in enumerate(zip(porcentajes_fuerzas, bancas_c), 1):
-    st.write(f"Fuerza {idx}: {p:.2f}% votos - {b} bancas")
-st.write(f"Porcentaje de otras fuerzas sin bancas: {restante_c:.2f}%")
-
-# Diputados
-bancas_d, restante_d = calcular_bancas(porcentajes_fuerzas, bancas_diputados)
-st.subheader(f"🔹 Diputados ({bancas_diputados} bancas en juego)")
-st.markdown(f"📌 **Piso electoral:** {piso_diputados:.2f}%")
-for idx, (p, b) in enumerate(zip(porcentajes_fuerzas, bancas_d), 1):
-    st.write(f"Fuerza {idx}: {p:.2f}% votos - {b} bancas")
-st.write(f"Porcentaje de otras fuerzas sin bancas: {restante_d:.2f}%")
+        # Diputados
+        bancas_d, restante_d = calcular_bancas(porcentajes_fuerzas, bancas_diputados)
+        st.subheader(f"🔹 Diputados ({bancas_diputados} bancas en juego)")
+        for idx, (p, b) in enumerate(zip(porcentajes_fuerzas, bancas_d), 1):
+            st.write(f"Fuerza {idx}: {p:.2f}% votos - {b} bancas")
+        st.write(f"Porcentaje de otras fuerzas sin bancas: {restante_d:.2f}%")
